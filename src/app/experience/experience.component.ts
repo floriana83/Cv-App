@@ -78,18 +78,14 @@ status = 'Enable';
 
   mostradettaglio(obj: Experience) {
     this.showdettaglio = obj.id;
-    // alert('---> ' + obj.mansione);
+    alert('---> ' + obj.mansione);
   }
 
   
-  // evidenziaexp(obj: Experience) {
-  //   this.showexp = obj.id;
-
-  // }
   evidenziaexp(obj: Experience) {
    
     this.toggle = !this.toggle;
-    this.status = this.toggle ? 'Enable' : 'Disable';
+    // this.status = this.toggle ? 'Enable' : 'Disable';
   }
   ngOnInit(): void {
   }
