@@ -3,19 +3,26 @@
 
   <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
     <div class="my-auto">
-      <h2 class="mb-5">Experience</h2>
+      <h2 class="mb-5" [ngStyle]="styleCSS" [style.background-color]="toggle ? 'white' : 'red'">Experience</h2>
 
       <!-- ripetere il blocco -->
-      <div *ngFor="let exp of listaexperience" class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
+      <div *ngFor="let exp of listaexperience" (click)="mostradettaglio(exp)" 
+        class="resume-item d-flex flex-column flex-md-row mb-5">
+        <div class="resume-content mr-auto" (click)="getColor(exp)" [ngStyle]="{'background-color': toggle2 && exp.id == changebg ? 'yellow' : 'white'}">
           <h3 class="mb-0">{{exp.mansione}}</h3>
           <div class="subheading mb-3">{{exp.azienda}}</div>
-          <p>{{exp.descrizione}}</p>
+          <div [style.display]="exp.id==showdettaglio ? 'block' : 'none'">
+            <p>{{exp.descrizione}}</p>
+          </div>
         </div>
         <div class="resume-date text-md-right">
-          <span class="text-primary">{{exp.periodo}}</span>
+          <span class="text-primary" (click)="evidenziaexp(exp)">{{exp.periodo}}</span>
         </div>
+
+        
       </div>
+
+
 
     </div>
 

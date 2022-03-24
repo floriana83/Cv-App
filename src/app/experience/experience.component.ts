@@ -7,9 +7,28 @@ import { Experience } from '../model/experience.model';
 })
 export class ExperienceComponent implements OnInit {
   listaexperience: Experience[];
+ 
+  changebg: string;
+  showdettaglio: string;
+  styleCSS: Object;
+  toggle = true;
+  toggle2 = false;
+status = 'Enable'; 
+
+
   constructor() {
+    this.styleCSS= {
+      "color": "blue ",
+      "font-size" : "80px"
+   }
+   this.changebg= "none";
+   
+
+    this.showdettaglio = "none";
+ 
     this.listaexperience = [
       {
+        id: "1",
         mansione: 'Front End Developer',
         azienda: 'Edgemony ',
         descrizione: `Progetto finale del Coding Bootcamp di Edgemony.
@@ -21,6 +40,7 @@ export class ExperienceComponent implements OnInit {
         stato: '',
       },
       {
+        id: "2",
         mansione: 'Front End Developer',
         azienda: 'Progetto personale',
         descrizione: `AirBnb Clone | il progetto è stato sviluppato con Metodologia Agile, in ambiente React con l'ausilio delle seguenti utility: 
@@ -29,6 +49,7 @@ export class ExperienceComponent implements OnInit {
         stato: '',
       },
       {
+        id: "3",
         mansione: 'Addetta Segretaria Amministrativa ',
         azienda: 'lavoratore autonomo',
         descrizione: '',
@@ -36,6 +57,7 @@ export class ExperienceComponent implements OnInit {
         stato: '',
       },
       {
+        id: "4",
         mansione: 'Trader indipendente e coach di trading',
         azienda: 'lavoratore autonomo',
         descrizione: '',
@@ -43,6 +65,7 @@ export class ExperienceComponent implements OnInit {
         stato: '',
       },
       {
+        id: "5",
         mansione: 'Tecnico restauratore',
         azienda: 'lavoratore autonomo',
         descrizione: '',
@@ -52,6 +75,24 @@ export class ExperienceComponent implements OnInit {
     ];
   }
 
+
+  mostradettaglio(obj: Experience) {
+    this.showdettaglio = obj.id;
+    alert('---> ' + obj.mansione);
+  }
+
+  getColor(obj: Experience) {
+   
+    this.toggle2 = !this.toggle2;
+    this.changebg = obj.id;
+   
+  }
+
+  evidenziaexp(obj: Experience) {
+   
+    this.toggle = !this.toggle;
+    this.status = this.toggle ? 'Enable' : 'Disable';
+  }
   ngOnInit(): void {
   }
 
