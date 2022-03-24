@@ -1,7 +1,7 @@
 export class Education {
     qualifica!: string;
     corso!: string;
-    struttura!: string;
+    scuola!: string;
     descrizione!: string;
     periodo!: string;
 

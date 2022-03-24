@@ -1,5 +1,5 @@
 export class Experience { 
-    id!:string;
+    _id!:string;
     mansione!: string;
     azienda!: string;
     descrizione!: string;

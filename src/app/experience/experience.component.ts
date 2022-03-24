@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Experience } from '../model/experience.model';
 
 @Component({
@@ -6,7 +8,7 @@ import { Experience } from '../model/experience.model';
   templateUrl: './experience.component.html'
 })
 export class ExperienceComponent implements OnInit {
-  listaexperience: Experience[];
+  listaexperience: Observable<Experience[]>;
  
   changebg: string;
   showdettaglio: string;
@@ -16,7 +18,7 @@ export class ExperienceComponent implements OnInit {
 status = 'Enable'; 
 
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.styleCSS= {
       "color": "blue ",
       "font-size" : "80px"
@@ -25,66 +27,68 @@ status = 'Enable';
    
 
     this.showdettaglio = "none";
- 
-    this.listaexperience = [
-      {
-        id: "1",
-        mansione: 'Front End Developer',
-        azienda: 'Edgemony ',
-        descrizione: `Progetto finale del Coding Bootcamp di Edgemony.
-        Amazon Clone | il progetto è stato sviluppato con Metodologia Agile, in ambiente React con l'ausilio delle seguenti utility: 
-        Sass e Material UI (stili e icone);
-        React router (per la dinamicità delle pagine);
-        Firebase (backend: Hosting, json api, login)`,
-        periodo: 'FEB 2022',
-        stato: '',
-      },
-      {
-        id: "2",
-        mansione: 'Front End Developer',
-        azienda: 'Progetto personale',
-        descrizione: `AirBnb Clone | il progetto è stato sviluppato con Metodologia Agile, in ambiente React con l'ausilio delle seguenti utility: 
-        Sass e Material UI (stili e icone)`,
-        periodo: 'GEN 2022',
-        stato: '',
-      },
-      {
-        id: "3",
-        mansione: 'Addetta Segretaria Amministrativa ',
-        azienda: 'lavoratore autonomo',
-        descrizione: '',
-        periodo: '2019 - 2020',
-        stato: '',
-      },
-      {
-        id: "4",
-        mansione: 'Trader indipendente e coach di trading',
-        azienda: 'lavoratore autonomo',
-        descrizione: '',
-        periodo: 'MAG 2018 - GEN 2019',
-        stato: '',
-      },
-      {
-        id: "5",
-        mansione: 'Tecnico restauratore',
-        azienda: 'lavoratore autonomo',
-        descrizione: '',
-        periodo: '2004 - 2018',
-        stato: '',
-      }
-    ];
+   
+
+    this.listaexperience = new Observable<Experience[]>();
+    // [
+    //   {
+    //     id: "1",
+    //     mansione: 'Front End Developer',
+    //     azienda: 'Edgemony ',
+    //     descrizione: `Progetto finale del Coding Bootcamp di Edgemony.
+    //     Amazon Clone | il progetto è stato sviluppato con Metodologia Agile, in ambiente React con l'ausilio delle seguenti utility: 
+    //     Sass e Material UI (stili e icone);
+    //     React router (per la dinamicità delle pagine);
+    //     Firebase (backend: Hosting, json api, login)`,
+    //     periodo: 'FEB 2022',
+    //     stato: '',
+    //   },
+    //   {
+    //     id: "2",
+    //     mansione: 'Front End Developer',
+    //     azienda: 'Progetto personale',
+    //     descrizione: `AirBnb Clone | il progetto è stato sviluppato con Metodologia Agile, in ambiente React con l'ausilio delle seguenti utility: 
+    //     Sass e Material UI (stili e icone)`,
+    //     periodo: 'GEN 2022',
+    //     stato: '',
+    //   },
+    //   {
+    //     id: "3",
+    //     mansione: 'Addetta Segretaria Amministrativa ',
+    //     azienda: 'lavoratore autonomo',
+    //     descrizione: '',
+    //     periodo: '2019 - 2020',
+    //     stato: '',
+    //   },
+    //   {
+    //     id: "4",
+    //     mansione: 'Trader indipendente e coach di trading',
+    //     azienda: 'lavoratore autonomo',
+    //     descrizione: '',
+    //     periodo: 'MAG 2018 - GEN 2019',
+    //     stato: '',
+    //   },
+    //   {
+    //     id: "5",
+    //     mansione: 'Tecnico restauratore',
+    //     azienda: 'lavoratore autonomo',
+    //     descrizione: '',
+    //     periodo: '2004 - 2018',
+    //     stato: '',
+    //   }
+    // ];
   }
 
 
   mostradettaglio(obj: Experience) {
-    this.showdettaglio = obj.id;
+    this.showdettaglio = obj._id;
     alert('---> ' + obj.mansione);
   }
 
   getColor(obj: Experience) {
    
     this.toggle2 = !this.toggle2;
-    this.changebg = obj.id;
+    this.changebg = obj._id;
    
   }
 
@@ -94,6 +98,7 @@ status = 'Enable';
     this.status = this.toggle ? 'Enable' : 'Disable';
   }
   ngOnInit(): void {
+    this.listaexperience = this.http.get<Experience[]>('http://cv-app-node.herokuapp.com/api/experience/');
   }
 
 }

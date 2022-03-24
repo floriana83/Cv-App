@@ -6,12 +6,12 @@
       <h2 class="mb-5" [ngStyle]="styleCSS" [style.background-color]="toggle ? 'white' : 'red'">Experience</h2>
 
       <!-- ripetere il blocco -->
-      <div *ngFor="let exp of listaexperience" (click)="mostradettaglio(exp)" 
+      <div *ngFor="let exp of listaexperience | async"  (click)="mostradettaglio(exp)" 
         class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto" (click)="getColor(exp)" [ngStyle]="{'background-color': toggle2 && exp.id == changebg ? 'yellow' : 'white'}">
+        <div class="resume-content mr-auto" (click)="getColor(exp)" [ngStyle]="{'background-color': toggle2 && exp._id == changebg ? 'yellow' : 'white'}">
           <h3 class="mb-0">{{exp.mansione}}</h3>
           <div class="subheading mb-3">{{exp.azienda}}</div>
-          <div [style.display]="exp.id==showdettaglio ? 'block' : 'none'">
+          <div [style.display]="exp._id==showdettaglio ? 'block' : 'none'">
             <p>{{exp.descrizione}}</p>
           </div>
         </div>

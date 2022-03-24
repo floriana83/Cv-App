@@ -11,6 +11,7 @@ import { SkillsComponent } from './skills/skills.component';
 
 import { InterestsComponent } from './interests/interests.component';
 import { ProjectComponent } from './project/project.component';
+import {HttpClientModule} from '@angular/common/http';
 
 // decoratore modulo radice
 
@@ -28,6 +29,7 @@ import { ProjectComponent } from './project/project.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
