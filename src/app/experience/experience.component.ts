@@ -7,18 +7,23 @@ import { Experience } from '../model/experience.model';
 })
 export class ExperienceComponent implements OnInit {
   listaexperience: Experience[];
-  showexp: string;
+ 
+  changebg: string;
   showdettaglio: string;
   styleCSS: Object;
   toggle = true;
+  toggle2 = false;
 status = 'Enable'; 
   constructor() {
     this.styleCSS= {
       "color": "blue ",
       "font-size" : "80px"
    }
+   this.changebg= "none";
+   
+
     this.showdettaglio = "none";
-    this.showexp= "none";
+ 
     this.listaexperience = [
       {
         id: "1",
@@ -81,7 +86,13 @@ status = 'Enable';
     alert('---> ' + obj.mansione);
   }
 
-  
+  getColor(obj: Experience) {
+   
+    this.toggle2 = !this.toggle2;
+    this.changebg = obj.id;
+   
+  }
+
   evidenziaexp(obj: Experience) {
    
     this.toggle = !this.toggle;
