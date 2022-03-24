@@ -14,6 +14,8 @@ export class ExperienceComponent implements OnInit {
   toggle = true;
   toggle2 = false;
 status = 'Enable'; 
+
+
   constructor() {
     this.styleCSS= {
       "color": "blue ",
@@ -73,13 +75,6 @@ status = 'Enable';
     ];
   }
 
-  // mostraid(id:string) {
-  //   alert('il valore id corrispondente è:' + id);
-  // }
-
-  // mostradettaglio1(obj: MouseEvent) {
-  //   alert('--> ' + (<HTMLElement>obj.target).getAttribute("class"));
-  //  }
 
   mostradettaglio(obj: Experience) {
     this.showdettaglio = obj.id;
@@ -96,7 +91,7 @@ status = 'Enable';
   evidenziaexp(obj: Experience) {
    
     this.toggle = !this.toggle;
-    // this.status = this.toggle ? 'Enable' : 'Disable';
+    this.status = this.toggle ? 'Enable' : 'Disable';
   }
   ngOnInit(): void {
   }
